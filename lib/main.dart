@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:motogp_leaderboard/main_screen.dart';
-import 'package:motogp_leaderboard/detail_screen.dart';
+import 'package:motogp_leaderboard/main_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
         accentColor: Color(0xFFD8ECF1),
         // scaffoldBackgroundColor: Color(0xFF4098D2),
      ),
-     home: DetailScreen()
+     home: MainScreen()
    );
  }
 }

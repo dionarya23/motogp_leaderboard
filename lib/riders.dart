@@ -1,4 +1,5 @@
 class Riders {
+  int posisi;
   String name;
   String photo;
   String team;
@@ -8,6 +9,7 @@ class Riders {
   String description;
 
   Riders({
+    this.posisi,
     this.name,
     this.photo,
     this.team,

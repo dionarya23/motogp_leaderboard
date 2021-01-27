@@ -5,17 +5,17 @@ import 'package:motogp_leaderboard/riders.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class DetailScreen extends StatelessWidget {
-  // final Riders rider;
+  final Riders rider;
+  final int posisi;
 
-  // DetailScreen({@required this.rider});
+  DetailScreen({@required this.rider, this.posisi});
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color(0xFF4098D2),
-
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height+300,
           decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -34,7 +34,9 @@ class DetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         IconButton(
-                          onPressed: () => {log("Berhasil")},
+                          onPressed: () {
+                             Navigator.pop(context);
+                          },
                           icon: Icon(
                             Icons.arrow_back,
                             color: Color(0xFFFEFEFE),
@@ -62,7 +64,7 @@ class DetailScreen extends StatelessWidget {
                 ),
                 child: ClipOval(
                   child: Image.network(
-                    "https://asset.indosport.com/article/image/q/80/319335/joan_mir_suzuki_1-169.jpg",
+                    rider.photo,
                     height: 200,
                     width: 200,
                     fit: BoxFit.cover,
@@ -72,7 +74,7 @@ class DetailScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "Dokun",
+                  rider.name,
                   style: TextStyle(
                       color: Color(0xFFFEFEFE),
                       fontWeight: FontWeight.bold,
@@ -80,13 +82,13 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                "Suzuki",
+                rider.team,
                 style: TextStyle(color: Color(0xFFD5D9DF), fontSize: 15),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Text(
-                  "1st Position",
+                  (rider.posisi == 1) ? '${rider.posisi}st Position' : (rider.posisi==2) ? '${rider.posisi}nd Position' : (rider.posisi==3) ? '${rider.posisi}rd Position' : '${rider.posisi}th Position',
                   style: TextStyle(color: Color(0xFFFEFEFE), fontSize: 20),
                 ),
               ),
@@ -123,7 +125,7 @@ class DetailScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  "298",
+                                  rider.points.toString(),
                                   style: TextStyle(
                                       color: Color(0xFFFEFEFE), fontSize: 30),
                                 ),
@@ -148,7 +150,7 @@ class DetailScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  "6",
+                                  rider.wins.toString(),
                                   style: TextStyle(
                                       color: Color(0xFFFEFEFE), fontSize: 30),
                                 ),
@@ -173,7 +175,7 @@ class DetailScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  "12",
+                                  rider.podiums.toString(),
                                   style: TextStyle(
                                       color: Color(0xFFFEFEFE), fontSize: 30),
                                 ),
@@ -188,7 +190,7 @@ class DetailScreen extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                child: Text("Dokun manusia ikan dan  suka makan ikan Dokun manusia ikan dan  suka makan ikan Dokun manusia ikan dan  suka makan ikan Dokun manusia ikan dan  suka makan ikan Dokun manusia ikan dan  suka makan ikan Dokun manusia ikan dan  suka makan ikan Dokun manusia ikan dan  suka makan ikan", 
+                child: Text(rider.description,
                 textAlign: TextAlign.justify,
                 style: TextStyle(color: Color(0xFFFEFEFE,)),),
               )
@@ -213,7 +215,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
     return IconButton(
       icon: Icon(
         isFavorite ? Icons.favorite : Icons.favorite_border,
-        color: Colors.red,
+        color: Color(0xFF4098D2),
       ),
       onPressed: () {
         setState(() {
